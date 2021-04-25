@@ -12,7 +12,7 @@ const About = () => {
             About ReactWeather
           </h3>
           <p className="pt-4">
-            ReactWeather is a weather app built on top of the{' '}
+            ReactWeather is a beautiful weather app built on top of the{' '}
             <a
               className="underline text-indigo-500 hover:text-indigo-700"
               href="https://openweathermap.com/api"
@@ -23,11 +23,51 @@ const About = () => {
             </a>
             .
           </p>
-         
+          
+          <p className="pt-4">
+            It's runs on{' '}
+            <a
+              className="underline text-indigo-500 hover:text-indigo-700"
+              href="https://reactjs.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React
+            </a>{' '}
+            and{' '}
+            <a
+              className="underline text-indigo-500 hover:text-indigo-700"
+              href="https://tailwindcss.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TailwindCSS
+            </a>
+            . It uses{' '}
+            <a
+              className="underline text-indigo-500 hover:text-indigo-700"
+              href="https://erikflowers.github.io/weather-icons/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Erik Flowers' weather icons
+            </a>
+          </p>
+          <p className="pt-4">
+            I utlized the code from 
+            <a
+              className="underline text-indigo-500 hover:text-indigo-700"
+              href="https://github.com/denniskigen"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Dennis Kigen 
+            </a>
+            ,  repositery and refactor it in different folders and break the code in different componenets
+          </p>
         </div>
       </section>
     </>
   );
 };
-
 export default About;

@@ -1,4 +1,5 @@
 A simple React weather app that displays weather information from the OpenWeatherMap API.
+App is deaployed at this link https://6087af2b0e649bbd9014ae63--react-weather-app-test.netlify.app/
 ## Getting started
 
 - Sign up over at [openweathermap.org](https://openweathermap.org/appid) to get an API key.

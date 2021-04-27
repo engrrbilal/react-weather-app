@@ -1,73 +1,72 @@
-import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import About from '../about/about'
-import WeatherCard from '../../components/weather/weather-card'
-import NavBar from '../../components/common/navbar'
-import Loading from '../../components/common/loading'
-import Search from '../../components/search'
-import {
-  fetchTodayWeather,
-  fetchWhetherForecast,
-  getLocationMap,
-} from '../../actions/weather'
+import About from '../about/about';
+import WeatherCard from '../../components/weather/weather-card';
+import NavBar from '../../components/common/navbar';
+import Loading from '../../components/common/loading';
+import Search from '../../components/search';
+import { fetchTodayWeather, fetchWhetherForecast } from '../../actions/weather';
 
 const Dashboard = () => {
-  const [location, setLocation] = useState('Islamabad')
-  const [error, setError] = useState(null)
-  const [forecast, setForecast] = useState([])
-  const [weather, setWeather] = useState({})
-  const [searchText, setSearchText] = useState('')
-  const [isSearching, setIsSearching] = useState(false)
-  const [units, setUnits] = useState('metric')
+  const [location, setLocation] = useState('Islamabad');
+  const [error, setError] = useState(null);
+  const [forecast, setForecast] = useState([]);
+  const [weather, setWeather] = useState({});
+  const [searchText, setSearchText] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const [units, setUnits] = useState('metric');
 
   const handleLocationChange = event => {
     if (event.target.value) {
-      setSearchText(event.target.value)
+      setIsSearching(true);
+      setSearchText(event.target.value);
     } else {
-      setSearchText('')
+      setSearchText('');
     }
-  }
+  };
 
   const handleUnitsChange = newUnits => {
-    setUnits(newUnits)
-  }
+    setUnits(newUnits);
+  };
   /* Setting location for getting data*/
   useEffect(() => {
     if (searchText) {
-      setLocation(searchText)
+      setLocation(searchText);
     } else {
-      setLocation('Islamabad')
+      setLocation('Islamabad');
     }
-  }, [searchText])
+  }, [searchText]);
   /* get today weather  */
   useEffect(() => {
-    async function getWeather () {
+    async function getWeather() {
+      setIsSearching(false);
       try {
-        const weather = await fetchTodayWeather(location, units)
-        setIsSearching(false)
-        setWeather(weather)
+        const weather = await fetchTodayWeather(location, units);
+        setWeather(weather);
       } catch (err) {
-        setError(err)
+        setIsSearching(false);
+        setError(err);
       }
     }
 
-    getWeather()
-  }, [location, units])
+    getWeather();
+  }, [location, units]);
   /* get no of days forcast weather  */
   useEffect(() => {
-    async function getForecast () {
+    async function getForecast() {
+      setIsSearching(false);
       try {
-        const forecast = await fetchWhetherForecast(location, units)
-        setIsSearching(false)
-        setForecast(forecast)
+        const forecast = await fetchWhetherForecast(location, units);
+        setForecast(forecast);
       } catch (err) {
-        setError(err)
+        setIsSearching(false);
+        setError(err);
       }
     }
 
-    getForecast()
-  }, [location, units])
+    getForecast();
+  }, [location, units]);
   /* get current location map  */
   //   useEffect(() => {
   //     async function getForecast () {
@@ -88,11 +87,11 @@ const Dashboard = () => {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             {(weather && Object.keys(weather).length) ||
             (forecast && Object.keys(forecast).length) ? (
               <main>
-                <div className='mx-auto w-5/6 md:w-full 2xl:max-w-7xl xl:max-w-6xl'>
+                <div className="mx-auto w-5/6 md:w-full 2xl:max-w-7xl xl:max-w-6xl">
                   <Search
                     location={location}
                     error={error}
@@ -111,12 +110,12 @@ const Dashboard = () => {
               <Loading />
             )}
           </Route>
-          <Route exact path='/about'>
+          <Route exact path="/about">
             <About />
           </Route>
         </Switch>
       </Router>
     </>
-  )
-}
-export default Dashboard
+  );
+};
+export default Dashboard;

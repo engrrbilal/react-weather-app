@@ -45,7 +45,7 @@ describe('<App />', () => {
       screen.getByText(/ReactWeather is a beautiful weather app/i),
     ).toBeInTheDocument();
 
-    const homeLink = screen.getByRole('heading', { name: /^reactweather$/i });
+    const homeLink = screen.getByRole('heading', { name: /^weather app$/i });
     userEvent.click(homeLink, leftClick);
 
     expect(screen.queryByText(/about reactweather/i)).not.toBeInTheDocument();
